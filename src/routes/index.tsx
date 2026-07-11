@@ -806,7 +806,13 @@ function Footer() {
       <div className="border-t border-border">
         <div className="container-page flex flex-col items-start justify-between gap-2 py-5 text-xs text-muted-foreground sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} Lenka Krystynová. Všechna práva vyhrazena.</p>
-          <p>Účetní služby pro OSVČ, s.r.o. a spolky.</p>
+          <div className="flex flex-wrap items-center gap-4">
+            <a href="#zasady-ochrany" className="transition-colors hover:text-emerald">
+              Zásady ochrany osobních údajů
+            </a>
+            <span aria-hidden className="hidden sm:inline">·</span>
+            <p>Účetní služby pro OSVČ, s.r.o. a spolky.</p>
+          </div>
         </div>
       </div>
     </footer>
