@@ -814,8 +814,10 @@ function Footer() {
 }
 
 function HomePage() {
+  useReveal();
   return (
     <div className="min-h-screen bg-background">
+
       <Header />
       <main>
         <Hero />
