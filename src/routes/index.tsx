@@ -665,7 +665,7 @@ function Contact() {
           <SectionTitle
             eyebrow="Kontakt"
             title="Ozvěte se – rád(a) vám pomohu."
-            desc="Neváhejte mě kontaktovat s jakýmkoli dotazem. Odpovím obvykle do jednoho pracovního dne."
+            desc="Neváhejte mě kontaktovat s jakýmkoli dotazem. Ozvu se vám zpět co nejdříve."
           />
 
           <div className="mt-8 space-y-4">
