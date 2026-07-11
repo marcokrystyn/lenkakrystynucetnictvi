@@ -77,14 +77,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Účetní služby | Lenka Krystynová" },
+      {
+        name: "description",
+        content:
+          "Profesionální účetní služby pro OSVČ, s.r.o., spolky i firmy. Vedení účetnictví, mzdová agenda, personální agenda a příprava podkladů pro daňová přiznání. Osobně i online po celé České republice.",
+      },
+      { name: "author", content: "Lenka Krystynová" },
+      { property: "og:title", content: "Účetní služby | Lenka Krystynová" },
+      {
+        property: "og:description",
+        content:
+          "Profesionální účetní služby pro OSVČ, s.r.o., spolky i firmy. Vedení účetnictví, mzdová a personální agenda. Osobně i online po celé ČR.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
