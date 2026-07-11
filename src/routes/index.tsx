@@ -200,14 +200,14 @@ function Hero() {
                 Vše v pořádku
               </p>
               <div className="mt-4 flex items-center gap-2 text-sm text-emerald">
-                <Check className="h-4 w-4" /> Zpracováno k 10. dni v měsíci
+                <Check className="h-4 w-4" /> Vše zpracováno
               </div>
             </div>
 
             <ul className="mt-5 space-y-3">
               {[
-                { icon: BookOpenCheck, label: "Vedení účetnictví", val: "Aktivní" },
-                { icon: Wallet, label: "Mzdová agenda", val: "5 zaměstnanců" },
+                { icon: BookOpenCheck, label: "Vedení účetnictví", val: "Aktivní klienti" },
+                { icon: Wallet, label: "Mzdová agenda", val: "Průběžně" },
                 { icon: Archive, label: "Archivace dokladů", val: "Průběžně" },
               ].map((r) => (
                 <li
@@ -665,7 +665,7 @@ function Contact() {
           <SectionTitle
             eyebrow="Kontakt"
             title="Ozvěte se – rád(a) vám pomohu."
-            desc="Neváhejte mě kontaktovat s jakýmkoli dotazem. Odpovím obvykle do jednoho pracovního dne."
+            desc="Neváhejte mě kontaktovat s jakýmkoli dotazem. Ozvu se vám zpět co nejdříve."
           />
 
           <div className="mt-8 space-y-4">
@@ -725,7 +725,7 @@ function Contact() {
             <div className="overflow-hidden rounded-2xl border border-border shadow-soft">
               <iframe
                 title="Mapa – Hejnov 29, Holčovice"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=17.545%2C50.100%2C17.605%2C50.140&layer=mapnik&marker=50.120,17.575"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=17.5240%2C50.0865%2C17.5840%2C50.1165&layer=mapnik&marker=50.1015%2C17.5540"
                 className="h-64 w-full"
                 loading="lazy"
               />
@@ -806,7 +806,13 @@ function Footer() {
       <div className="border-t border-border">
         <div className="container-page flex flex-col items-start justify-between gap-2 py-5 text-xs text-muted-foreground sm:flex-row sm:items-center">
           <p>© {new Date().getFullYear()} Lenka Krystynová. Všechna práva vyhrazena.</p>
-          <p>Účetní služby pro OSVČ, s.r.o. a spolky.</p>
+          <div className="flex flex-wrap items-center gap-4">
+            <a href="#zasady-ochrany" className="transition-colors hover:text-emerald">
+              Zásady ochrany osobních údajů
+            </a>
+            <span aria-hidden className="hidden sm:inline">·</span>
+            <p>Účetní služby pro OSVČ, s.r.o. a spolky.</p>
+          </div>
         </div>
       </div>
     </footer>

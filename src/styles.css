@@ -64,9 +64,9 @@
   --popover-foreground: oklch(0.22 0.04 255);
   --primary: oklch(0.32 0.06 255);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.97 0.01 250);
+  --secondary: oklch(0.965 0.008 240);
   --secondary-foreground: oklch(0.32 0.06 255);
-  --muted: oklch(0.97 0.01 250);
+  --muted: oklch(0.965 0.008 240);
   --muted-foreground: oklch(0.5 0.03 255);
   --accent: oklch(0.48 0.12 160);
   --accent-foreground: oklch(0.99 0 0);
@@ -97,6 +97,12 @@
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-emerald);
+    outline-offset: 2px;
+    border-radius: 6px;
   }
 }
 
