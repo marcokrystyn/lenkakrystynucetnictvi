@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { useReveal } from "@/hooks/use-reveal";
 import {
   BookOpenCheck,
   Wallet,
@@ -242,7 +243,7 @@ function SectionTitle({
   center?: boolean;
 }) {
   return (
-    <div className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
+    <div className={`reveal ${center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}`}>
       <span className="inline-flex items-center gap-2 rounded-full bg-emerald/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-emerald">
         {eyebrow}
       </span>
@@ -813,8 +814,10 @@ function Footer() {
 }
 
 function HomePage() {
+  useReveal();
   return (
     <div className="min-h-screen bg-background">
+
       <Header />
       <main>
         <Hero />
