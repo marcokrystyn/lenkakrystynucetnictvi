@@ -88,10 +88,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Profesionální účetní služby pro OSVČ, s.r.o., spolky i firmy. Vedení účetnictví, mzdová a personální agenda. Osobně i online po celé ČR.",
+          "Profesionální účetní služby pro OSVČ, s.r.o., spolky i firmy. Vedení účetnictví, mzdová agenda, personální agenda a příprava podkladů pro daňová přiznání. Osobně i online po celé České republice.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Účetní služby | Lenka Krystynová" },
+      { name: "twitter:description", content: "Profesionální účetní služby pro OSVČ, s.r.o., spolky i firmy. Vedení účetnictví, mzdová agenda, personální agenda a příprava podkladů pro daňová přiznání. Osobně i online po celé České republice." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a28f956a-adec-4900-8741-98f0729f2b47/id-preview-a5a37da2--6f3a2b3e-86b0-4275-a059-fe592d9f705a.lovable.app-1783779418554.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a28f956a-adec-4900-8741-98f0729f2b47/id-preview-a5a37da2--6f3a2b3e-86b0-4275-a059-fe592d9f705a.lovable.app-1783779418554.png" },
     ],
     links: [
       {
