@@ -98,6 +98,12 @@
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
+
+  :focus-visible {
+    outline: 2px solid var(--color-emerald);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
 }
 
 @utility container-page {
