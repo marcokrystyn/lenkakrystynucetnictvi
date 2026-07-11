@@ -200,14 +200,14 @@ function Hero() {
                 Vše v pořádku
               </p>
               <div className="mt-4 flex items-center gap-2 text-sm text-emerald">
-                <Check className="h-4 w-4" /> Zpracováno k 10. dni v měsíci
+                <Check className="h-4 w-4" /> Vše zpracováno
               </div>
             </div>
 
             <ul className="mt-5 space-y-3">
               {[
-                { icon: BookOpenCheck, label: "Vedení účetnictví", val: "Aktivní" },
-                { icon: Wallet, label: "Mzdová agenda", val: "5 zaměstnanců" },
+                { icon: BookOpenCheck, label: "Vedení účetnictví", val: "Aktivní klienti" },
+                { icon: Wallet, label: "Mzdová agenda", val: "Průběžně" },
                 { icon: Archive, label: "Archivace dokladů", val: "Průběžně" },
               ].map((r) => (
                 <li
