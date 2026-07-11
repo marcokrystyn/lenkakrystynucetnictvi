@@ -725,7 +725,7 @@ function Contact() {
             <div className="overflow-hidden rounded-2xl border border-border shadow-soft">
               <iframe
                 title="Mapa – Hejnov 29, Holčovice"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=17.545%2C50.100%2C17.605%2C50.140&layer=mapnik&marker=50.120,17.575"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=17.5240%2C50.0865%2C17.5840%2C50.1165&layer=mapnik&marker=50.1015%2C17.5540"
                 className="h-64 w-full"
                 loading="lazy"
               />
