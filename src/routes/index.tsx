@@ -634,7 +634,7 @@ const FAQS = [
   },
   {
     q: "Zpracováváte daňová přiznání?",
-    a: "Ne. Připravuji pouze podklady potřebné pro jejich zpracování.",
+    a: "Připravuji kompletní podklady pro daňové přiznání. Samotné podání pak zajišťuje daňový poradce nebo klient.",
   },
 ];
 
