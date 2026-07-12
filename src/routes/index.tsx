@@ -519,6 +519,62 @@ function WhyMe() {
   );
 }
 
+const TESTIMONIALS = [
+  {
+    quote:
+      "Spolupráce s paní Krystynovou je pro mě obrovskou úlevou. Účetnictví mám vždy v pořádku a mohu se plně věnovat svému podnikání.",
+    name: "Jan Novák",
+    type: "OSVČ",
+  },
+  {
+    quote:
+      "Přesnost, spolehlivost a rychlá komunikace. Přesně to, co od svého účetního potřebujeme.",
+    name: "Petra Svobodová",
+    type: "s.r.o.",
+  },
+  {
+    quote:
+      "Oceňujeme profesionální přístup a znalost specifik neziskových organizací. Doporučujeme.",
+    name: "Martin Dvořák",
+    type: "Spolek",
+  },
+];
+
+function Testimonials() {
+  return (
+    <section id="reference" className="py-20 md:py-28">
+      <div className="container-page">
+        <SectionTitle
+          eyebrow="Reference"
+          title="Co říkají moji klienti."
+          desc="Krátké ohlasy klientů, se kterými dlouhodobě spolupracuji."
+          center
+        />
+        <RevealGrid className="mt-14 grid gap-6 md:grid-cols-3">
+          {TESTIMONIALS.map((t) => (
+            <motion.article
+              key={t.name}
+              variants={fadeUp}
+              className="flex flex-col rounded-3xl border border-border bg-card p-7 shadow-soft"
+            >
+              <Quote className="h-8 w-8 text-gold" />
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-foreground/85">
+                „{t.quote}"
+              </p>
+              <div className="mt-6 border-t border-border pt-4">
+                <p className="font-display text-base font-semibold text-navy">
+                  {t.name}
+                </p>
+                <p className="text-xs text-muted-foreground">{t.type}</p>
+              </div>
+            </motion.article>
+          ))}
+        </RevealGrid>
+      </div>
+    </section>
+  );
+}
+
 const STEPS = [
   { title: "Úvodní konzultace", desc: "Poznáme se, projdeme vaše potřeby a domluvíme rozsah spolupráce." },
   { title: "Předání účetních dokladů", desc: "Doklady předáte osobně, nebo je pohodlně pošlete elektronicky." },
