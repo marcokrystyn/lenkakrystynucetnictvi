@@ -730,7 +730,7 @@ function ContactForm() {
       </label>
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 sm:w-auto"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold hover:shadow-gold sm:w-auto"
       >
         Odeslat poptávku
         <ArrowRight className="h-4 w-4" />
