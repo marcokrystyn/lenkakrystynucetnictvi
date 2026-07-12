@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { useReveal } from "@/hooks/use-reveal";
 import {
   BookOpenCheck,
@@ -25,7 +26,33 @@ import {
   Check,
   Menu,
   X,
+  Quote,
 } from "lucide-react";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
+};
+
+function RevealGrid({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <motion.div
+      className={className}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ staggerChildren: 0.1 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -72,7 +99,7 @@ function Header() {
 
         <a
           href="#kontakt"
-          className="hidden lg:inline-flex items-center gap-1.5 rounded-full bg-emerald px-4 py-2.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5"
+          className="hidden lg:inline-flex items-center gap-1.5 rounded-full bg-emerald px-4 py-2.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold hover:shadow-gold"
         >
           Nezávazná poptávka
           <ArrowRight className="h-4 w-4" />
@@ -142,7 +169,7 @@ function Hero() {
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <a
               href="#kontakt"
-              className="inline-flex items-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold hover:shadow-gold"
             >
               Kontaktovat
               <ArrowRight className="h-4 w-4" />
@@ -361,28 +388,25 @@ function Services() {
           desc="Vyberte si služby přesně podle potřeb vašeho podnikání. Zajistím vše potřebné s důrazem na přesnost a včasné termíny."
           center
         />
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <RevealGrid className="mt-14 grid gap-6 md:grid-cols-2">
           {SERVICES.map((s) => (
-            <article
+            <motion.article
               key={s.title}
-              className="group rounded-2xl border border-border bg-card p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
+              variants={fadeUp}
+              className="group rounded-3xl border border-border bg-card p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
             >
-              <div className="flex items-start gap-5">
-                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-emerald/10 text-emerald transition-colors group-hover:bg-emerald group-hover:text-accent-foreground">
-                  <s.icon className="h-6 w-6" />
-                </span>
-                <div className="min-w-0">
-                  <h3 className="font-display text-xl font-semibold text-navy">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {s.desc}
-                  </p>
-                </div>
-              </div>
-            </article>
+              <span className="inline-grid h-14 w-14 place-items-center rounded-2xl bg-emerald/10 text-emerald transition-colors group-hover:bg-emerald group-hover:text-accent-foreground">
+                <s.icon className="h-6 w-6" />
+              </span>
+              <h3 className="mt-5 font-display text-xl font-semibold text-navy">
+                {s.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {s.desc}
+              </p>
+            </motion.article>
           ))}
-        </div>
+        </RevealGrid>
       </div>
     </section>
   );
@@ -420,13 +444,14 @@ function Audience() {
           title="S kým nejčastěji spolupracuji."
           center
         />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <RevealGrid className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {AUDIENCE.map((a) => (
-            <article
+            <motion.article
               key={a.title}
-              className="flex flex-col rounded-2xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
+              variants={fadeUp}
+              className="flex flex-col rounded-3xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
             >
-              <span className="grid h-12 w-12 place-items-center rounded-xl bg-navy text-primary-foreground">
+              <span className="grid h-12 w-12 place-items-center rounded-2xl bg-navy text-primary-foreground">
                 <a.icon className="h-5 w-5" />
               </span>
               <h3 className="mt-5 font-display text-lg font-semibold text-navy">
@@ -435,9 +460,9 @@ function Audience() {
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 {a.desc}
               </p>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </RevealGrid>
       </div>
     </section>
   );
@@ -489,6 +514,62 @@ function WhyMe() {
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+const TESTIMONIALS = [
+  {
+    quote:
+      "Spolupráce s paní Krystynovou je pro mě obrovskou úlevou. Účetnictví mám vždy v pořádku a mohu se plně věnovat svému podnikání.",
+    name: "Jan Novák",
+    type: "OSVČ",
+  },
+  {
+    quote:
+      "Přesnost, spolehlivost a rychlá komunikace. Přesně to, co od svého účetního potřebujeme.",
+    name: "Petra Svobodová",
+    type: "s.r.o.",
+  },
+  {
+    quote:
+      "Oceňujeme profesionální přístup a znalost specifik neziskových organizací. Doporučujeme.",
+    name: "Martin Dvořák",
+    type: "Spolek",
+  },
+];
+
+function Testimonials() {
+  return (
+    <section id="reference" className="py-20 md:py-28">
+      <div className="container-page">
+        <SectionTitle
+          eyebrow="Reference"
+          title="Co říkají moji klienti."
+          desc="Krátké ohlasy klientů, se kterými dlouhodobě spolupracuji."
+          center
+        />
+        <RevealGrid className="mt-14 grid gap-6 md:grid-cols-3">
+          {TESTIMONIALS.map((t) => (
+            <motion.article
+              key={t.name}
+              variants={fadeUp}
+              className="flex flex-col rounded-3xl border border-border bg-card p-7 shadow-soft"
+            >
+              <Quote className="h-8 w-8 text-gold" />
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-foreground/85">
+                „{t.quote}"
+              </p>
+              <div className="mt-6 border-t border-border pt-4">
+                <p className="font-display text-base font-semibold text-navy">
+                  {t.name}
+                </p>
+                <p className="text-xs text-muted-foreground">{t.type}</p>
+              </div>
+            </motion.article>
+          ))}
+        </RevealGrid>
       </div>
     </section>
   );
@@ -553,7 +634,7 @@ const FAQS = [
   },
   {
     q: "Zpracováváte daňová přiznání?",
-    a: "Ne. Připravuji pouze podklady potřebné pro jejich zpracování.",
+    a: "Připravuji kompletní podklady pro daňové přiznání. Samotné podání pak zajišťuje daňový poradce nebo klient.",
   },
 ];
 
@@ -649,7 +730,7 @@ function ContactForm() {
       </label>
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 sm:w-auto"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold hover:shadow-gold sm:w-auto"
       >
         Odeslat poptávku
         <ArrowRight className="h-4 w-4" />
@@ -825,6 +906,19 @@ function Footer() {
   );
 }
 
+function FloatingContact() {
+  return (
+    <a
+      href="tel:+420732328715"
+      aria-label="Zavolat: +420 732 328 715"
+      className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-2xl bg-gold px-4 py-3.5 text-sm font-semibold text-white shadow-gold ring-1 ring-black/5 transition-transform hover:-translate-y-0.5 sm:bottom-6 sm:right-6"
+    >
+      <Phone className="h-5 w-5" />
+      <span className="hidden sm:inline">Zavolat</span>
+    </a>
+  );
+}
+
 function HomePage() {
   useReveal();
   return (
@@ -837,11 +931,13 @@ function HomePage() {
         <Services />
         <Audience />
         <WhyMe />
+        <Testimonials />
         <Process />
         <Faq />
         <Contact />
       </main>
       <Footer />
+      <FloatingContact />
     </div>
   );
 }
