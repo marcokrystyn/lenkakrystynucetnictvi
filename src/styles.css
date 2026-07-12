@@ -40,9 +40,12 @@
   --color-emerald: var(--emerald);
   --color-emerald-soft: var(--emerald-soft);
   --color-cream: var(--cream);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
 
-  --shadow-soft: 0 1px 2px oklch(0.2 0.04 250 / 0.04), 0 8px 24px oklch(0.2 0.04 250 / 0.06);
-  --shadow-card: 0 1px 2px oklch(0.2 0.04 250 / 0.05), 0 12px 40px oklch(0.2 0.04 250 / 0.08);
+  --shadow-soft: 0 2px 6px oklch(0.2 0.04 250 / 0.04), 0 16px 40px oklch(0.2 0.04 250 / 0.05);
+  --shadow-card: 0 4px 12px oklch(0.2 0.04 250 / 0.05), 0 24px 60px oklch(0.2 0.04 250 / 0.08);
+  --shadow-gold: 0 8px 24px oklch(0.68 0.16 55 / 0.22);
   --shadow-emerald: 0 8px 24px oklch(0.48 0.12 160 / 0.25);
 }
 
