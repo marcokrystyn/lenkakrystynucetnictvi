@@ -6,6 +6,7 @@ import {
   Wallet,
   Users,
   FileSpreadsheet,
+  Receipt,
   Briefcase,
   Building2,
   HeartHandshake,
@@ -342,6 +343,11 @@ const SERVICES = [
     icon: FileSpreadsheet,
     title: "Podklady pro daňová přiznání",
     desc: "Příprava přehledných a úplných podkladů potřebných pro zpracování daňových přiznání.",
+  },
+  {
+    icon: Receipt,
+    title: "Vedení daňové evidence",
+    desc: "Evidence příjmů a výdajů, majetku a závazků pro OSVČ, kteří nevedou účetnictví, ale daňovou evidenci dle zákona o daních z příjmů.",
   },
 ];
 
