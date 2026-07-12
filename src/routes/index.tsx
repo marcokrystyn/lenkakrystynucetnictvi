@@ -388,28 +388,25 @@ function Services() {
           desc="Vyberte si služby přesně podle potřeb vašeho podnikání. Zajistím vše potřebné s důrazem na přesnost a včasné termíny."
           center
         />
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <RevealGrid className="mt-14 grid gap-6 md:grid-cols-2">
           {SERVICES.map((s) => (
-            <article
+            <motion.article
               key={s.title}
-              className="group rounded-2xl border border-border bg-card p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
+              variants={fadeUp}
+              className="group rounded-3xl border border-border bg-card p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
             >
-              <div className="flex items-start gap-5">
-                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-emerald/10 text-emerald transition-colors group-hover:bg-emerald group-hover:text-accent-foreground">
-                  <s.icon className="h-6 w-6" />
-                </span>
-                <div className="min-w-0">
-                  <h3 className="font-display text-xl font-semibold text-navy">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {s.desc}
-                  </p>
-                </div>
-              </div>
-            </article>
+              <span className="inline-grid h-14 w-14 place-items-center rounded-2xl bg-emerald/10 text-emerald transition-colors group-hover:bg-emerald group-hover:text-accent-foreground">
+                <s.icon className="h-6 w-6" />
+              </span>
+              <h3 className="mt-5 font-display text-xl font-semibold text-navy">
+                {s.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {s.desc}
+              </p>
+            </motion.article>
           ))}
-        </div>
+        </RevealGrid>
       </div>
     </section>
   );
