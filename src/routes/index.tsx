@@ -99,7 +99,7 @@ function Header() {
 
         <a
           href="#kontakt"
-          className="hidden lg:inline-flex items-center gap-1.5 rounded-full bg-emerald px-4 py-2.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5"
+          className="hidden lg:inline-flex items-center gap-1.5 rounded-full bg-emerald px-4 py-2.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold hover:shadow-gold"
         >
           Nezávazná poptávka
           <ArrowRight className="h-4 w-4" />
@@ -169,7 +169,7 @@ function Hero() {
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <a
               href="#kontakt"
-              className="inline-flex items-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold hover:shadow-gold"
             >
               Kontaktovat
               <ArrowRight className="h-4 w-4" />
