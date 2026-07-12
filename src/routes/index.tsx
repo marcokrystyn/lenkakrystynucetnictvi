@@ -6,6 +6,7 @@ import {
   Wallet,
   Users,
   FileSpreadsheet,
+  Receipt,
   Briefcase,
   Building2,
   HeartHandshake,
