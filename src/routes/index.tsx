@@ -444,13 +444,14 @@ function Audience() {
           title="S kým nejčastěji spolupracuji."
           center
         />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <RevealGrid className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {AUDIENCE.map((a) => (
-            <article
+            <motion.article
               key={a.title}
-              className="flex flex-col rounded-2xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
+              variants={fadeUp}
+              className="flex flex-col rounded-3xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
             >
-              <span className="grid h-12 w-12 place-items-center rounded-xl bg-navy text-primary-foreground">
+              <span className="grid h-12 w-12 place-items-center rounded-2xl bg-navy text-primary-foreground">
                 <a.icon className="h-5 w-5" />
               </span>
               <h3 className="mt-5 font-display text-lg font-semibold text-navy">
@@ -459,9 +460,9 @@ function Audience() {
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 {a.desc}
               </p>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </RevealGrid>
       </div>
     </section>
   );
