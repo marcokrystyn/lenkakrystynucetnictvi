@@ -876,7 +876,7 @@ function HomePage() {
         <Services />
         <Audience />
         <WhyMe />
-        <Testimonials />
+        
         <Process />
         <Faq />
         <Contact />
