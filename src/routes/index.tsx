@@ -189,20 +189,25 @@ function Hero() {
           </p>
 
           <dl className="mt-12 grid max-w-lg grid-cols-3 border-t border-border pt-8">
-
             {[
               { k: "20+", v: "let praxe" },
               { k: "4×", v: "měsíčně komunikace" },
               { k: "ČR", v: "osobně i online" },
-            ].map((s) => (
-              <div key={s.v}>
-                <dt className="font-display text-3xl font-semibold text-navy">
+            ].map((s, i) => (
+              <div
+                key={s.v}
+                className={`px-3 text-center sm:text-left ${
+                  i < 2 ? "border-r border-border" : ""
+                }`}
+              >
+                <dt className="font-display text-3xl font-semibold text-emerald">
                   {s.k}
                 </dt>
                 <dd className="mt-1 text-sm text-muted-foreground">{s.v}</dd>
               </div>
             ))}
           </dl>
+
         </div>
 
         {/* Illustration card */}
