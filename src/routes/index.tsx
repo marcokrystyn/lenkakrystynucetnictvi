@@ -184,8 +184,12 @@ function Hero() {
               Naše služby
             </a>
           </div>
+          <p className="mt-5 text-sm text-muted-foreground">
+            Důvěřuje mi řada klientů z celé ČR.
+          </p>
 
-          <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-border pt-8">
+          <dl className="mt-12 grid max-w-lg grid-cols-3 border-t border-border pt-8">
+
             {[
               { k: "20+", v: "let praxe" },
               { k: "4×", v: "měsíčně komunikace" },
