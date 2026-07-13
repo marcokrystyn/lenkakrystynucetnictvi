@@ -255,7 +255,7 @@ function Hero() {
                   className="flex items-center justify-between rounded-xl border border-border bg-background px-4 py-3"
                 >
                   <span className="flex items-center gap-3 text-sm font-medium text-navy">
-                    <span className="grid h-8 w-8 place-items-center rounded-lg bg-emerald/10 text-emerald">
+                    <span className="grid h-8 w-8 place-items-center rounded-lg bg-emerald text-accent-foreground">
                       <r.icon className="h-4 w-4" />
                     </span>
                     {r.label}
