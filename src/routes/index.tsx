@@ -160,8 +160,11 @@ function Hero() {
           </span>
           <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] text-navy sm:text-5xl lg:text-6xl">
             Účetnictví bez zbytečných starostí.
-            <span className="block text-emerald">Pro OSVČ, s.r.o. i spolky.</span>
+            <span className="block mt-2 text-2xl font-medium text-emerald sm:text-3xl lg:text-4xl">
+              Pro OSVČ, s.r.o. i spolky.
+            </span>
           </h1>
+
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
             Více než 20 let zkušeností s vedením účetnictví, mzdovou a personální
             agendou. Individuální přístup, pečlivost a dlouhodobá spolupráce.
