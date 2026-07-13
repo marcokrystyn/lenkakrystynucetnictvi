@@ -868,7 +868,7 @@ function FloatingContact() {
     <a
       href="tel:+420732328715"
       aria-label="Zavolat: +420 732 328 715"
-      className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-2xl bg-gold px-4 py-3.5 text-sm font-semibold text-white shadow-gold ring-1 ring-black/5 transition-transform hover:-translate-y-0.5 sm:bottom-6 sm:right-6"
+      className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-gold px-4 py-3.5 text-sm font-semibold text-white shadow-gold ring-1 ring-black/5 transition-transform hover:-translate-y-0.5 sm:bottom-6 sm:right-6"
     >
       <Phone className="h-5 w-5" />
       <span className="hidden sm:inline">Zavolat</span>
