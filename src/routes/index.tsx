@@ -26,7 +26,7 @@ import {
   Check,
   Menu,
   X,
-  Quote,
+  
 } from "lucide-react";
 
 const fadeUp = {
