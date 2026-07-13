@@ -26,7 +26,7 @@ import {
   Check,
   Menu,
   X,
-  Quote,
+  
 } from "lucide-react";
 
 const fadeUp = {
@@ -160,8 +160,11 @@ function Hero() {
           </span>
           <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] text-navy sm:text-5xl lg:text-6xl">
             Účetnictví bez zbytečných starostí.
-            <span className="block text-emerald">Pro OSVČ, s.r.o. i spolky.</span>
+            <span className="block mt-2 text-2xl font-medium text-emerald sm:text-3xl lg:text-4xl">
+              Pro OSVČ, s.r.o. i spolky.
+            </span>
           </h1>
+
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
             Více než 20 let zkušeností s vedením účetnictví, mzdovou a personální
             agendou. Individuální přístup, pečlivost a dlouhodobá spolupráce.
@@ -181,21 +184,30 @@ function Hero() {
               Naše služby
             </a>
           </div>
+          <p className="mt-5 text-sm text-muted-foreground">
+            Důvěřuje mi řada klientů z celé ČR.
+          </p>
 
-          <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-border pt-8">
+          <dl className="mt-12 grid max-w-lg grid-cols-3 border-t border-border pt-8">
             {[
               { k: "20+", v: "let praxe" },
               { k: "4×", v: "měsíčně komunikace" },
               { k: "ČR", v: "osobně i online" },
-            ].map((s) => (
-              <div key={s.v}>
-                <dt className="font-display text-3xl font-semibold text-navy">
+            ].map((s, i) => (
+              <div
+                key={s.v}
+                className={`px-3 text-center sm:text-left ${
+                  i < 2 ? "border-r border-border" : ""
+                }`}
+              >
+                <dt className="font-display text-3xl font-semibold text-emerald">
                   {s.k}
                 </dt>
                 <dd className="mt-1 text-sm text-muted-foreground">{s.v}</dd>
               </div>
             ))}
           </dl>
+
         </div>
 
         {/* Illustration card */}
@@ -243,7 +255,7 @@ function Hero() {
                   className="flex items-center justify-between rounded-xl border border-border bg-background px-4 py-3"
                 >
                   <span className="flex items-center gap-3 text-sm font-medium text-navy">
-                    <span className="grid h-8 w-8 place-items-center rounded-lg bg-emerald/10 text-emerald">
+                    <span className="grid h-8 w-8 place-items-center rounded-lg bg-emerald text-accent-foreground">
                       <r.icon className="h-4 w-4" />
                     </span>
                     {r.label}
@@ -519,61 +531,6 @@ function WhyMe() {
   );
 }
 
-const TESTIMONIALS = [
-  {
-    quote:
-      "Spolupráce s paní Krystynovou je pro mě obrovskou úlevou. Účetnictví mám vždy v pořádku a mohu se plně věnovat svému podnikání.",
-    name: "Jan Novák",
-    type: "OSVČ",
-  },
-  {
-    quote:
-      "Přesnost, spolehlivost a rychlá komunikace. Přesně to, co od svého účetního potřebujeme.",
-    name: "Petra Svobodová",
-    type: "s.r.o.",
-  },
-  {
-    quote:
-      "Oceňujeme profesionální přístup a znalost specifik neziskových organizací. Doporučujeme.",
-    name: "Martin Dvořák",
-    type: "Spolek",
-  },
-];
-
-function Testimonials() {
-  return (
-    <section id="reference" className="py-20 md:py-28">
-      <div className="container-page">
-        <SectionTitle
-          eyebrow="Reference"
-          title="Co říkají moji klienti."
-          desc="Krátké ohlasy klientů, se kterými dlouhodobě spolupracuji."
-          center
-        />
-        <RevealGrid className="mt-14 grid gap-6 md:grid-cols-3">
-          {TESTIMONIALS.map((t) => (
-            <motion.article
-              key={t.name}
-              variants={fadeUp}
-              className="flex flex-col rounded-3xl border border-border bg-card p-7 shadow-soft"
-            >
-              <Quote className="h-8 w-8 text-gold" />
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-foreground/85">
-                „{t.quote}"
-              </p>
-              <div className="mt-6 border-t border-border pt-4">
-                <p className="font-display text-base font-semibold text-navy">
-                  {t.name}
-                </p>
-                <p className="text-xs text-muted-foreground">{t.type}</p>
-              </div>
-            </motion.article>
-          ))}
-        </RevealGrid>
-      </div>
-    </section>
-  );
-}
 
 const STEPS = [
   { title: "Úvodní konzultace", desc: "Poznáme se, projdeme vaše potřeby a domluvíme rozsah spolupráce." },
@@ -911,7 +868,7 @@ function FloatingContact() {
     <a
       href="tel:+420732328715"
       aria-label="Zavolat: +420 732 328 715"
-      className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-2xl bg-gold px-4 py-3.5 text-sm font-semibold text-white shadow-gold ring-1 ring-black/5 transition-transform hover:-translate-y-0.5 sm:bottom-6 sm:right-6"
+      className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-gold px-4 py-3.5 text-sm font-semibold text-white shadow-gold ring-1 ring-black/5 transition-transform hover:-translate-y-0.5 sm:bottom-6 sm:right-6"
     >
       <Phone className="h-5 w-5" />
       <span className="hidden sm:inline">Zavolat</span>
@@ -931,7 +888,7 @@ function HomePage() {
         <Services />
         <Audience />
         <WhyMe />
-        <Testimonials />
+        
         <Process />
         <Faq />
         <Contact />
