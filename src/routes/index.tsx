@@ -1,7 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { useReveal } from "@/hooks/use-reveal";
+
+function CountUp({ to, suffix = "", duration = 1.5 }: { to: number; suffix?: string; duration?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.5 });
+  const mv = useMotionValue(0);
+  const rounded = useTransform(mv, (v) => `${Math.round(v)}${suffix}`);
+  useEffect(() => {
+    if (inView) {
+      const controls = animate(mv, to, { duration, ease: [0.22, 1, 0.36, 1] });
+      return () => controls.stop();
+    }
+  }, [inView, to, duration, mv]);
+  return <motion.span ref={ref}>{rounded}</motion.span>;
+}
 import {
   BookOpenCheck,
   Wallet,
@@ -152,6 +166,17 @@ function Hero() {
             "radial-gradient(ellipse 60% 50% at 85% 0%, oklch(0.48 0.12 160 / 0.08), transparent 60%), radial-gradient(ellipse 60% 60% at 0% 100%, oklch(0.32 0.06 255 / 0.06), transparent 60%)",
         }}
       />
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "linear-gradient(oklch(0.32 0.06 255) 1px, transparent 1px), linear-gradient(90deg, oklch(0.32 0.06 255) 1px, transparent 1px)",
+          backgroundSize: "56px 56px",
+          maskImage: "radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 80%)",
+        }}
+      />
       <div className="container-page grid gap-14 py-20 md:py-28 lg:grid-cols-[1.15fr_1fr] lg:items-center">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-emerald/30 bg-emerald/5 px-3.5 py-1.5 text-xs font-medium text-emerald">
@@ -189,11 +214,11 @@ function Hero() {
           </p>
 
           <dl className="mt-12 grid max-w-lg grid-cols-3 border-t border-border pt-8">
-            {[
-              { k: "20+", v: "let praxe" },
-              { k: "4×", v: "měsíčně komunikace" },
+            {([
+              { n: 20, suffix: "+", v: "let praxe" },
+              { n: 4, suffix: "×", v: "měsíčně komunikace" },
               { k: "ČR", v: "osobně i online" },
-            ].map((s, i) => (
+            ] as Array<{ k?: string; n?: number; suffix?: string; v: string }>).map((s, i) => (
               <div
                 key={s.v}
                 className={`px-3 text-center sm:text-left ${
@@ -201,7 +226,7 @@ function Hero() {
                 }`}
               >
                 <dt className="font-display text-3xl font-semibold text-emerald">
-                  {s.k}
+                  {s.k ?? <CountUp to={s.n!} suffix={s.suffix} />}
                 </dt>
                 <dd className="mt-1 text-sm text-muted-foreground">{s.v}</dd>
               </div>
@@ -283,7 +308,13 @@ function SectionTitle({
   center?: boolean;
 }) {
   return (
-    <div className={`reveal ${center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}`}>
+    <motion.div
+      className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    >
       <span className="inline-flex items-center gap-2 rounded-full bg-emerald/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-emerald">
         {eyebrow}
       </span>
@@ -295,7 +326,7 @@ function SectionTitle({
           {desc}
         </p>
       )}
-    </div>
+    </motion.div>
   );
 }
 
@@ -423,6 +454,129 @@ function Services() {
     </section>
   );
 }
+
+const DOC_RANGES = [
+  { label: "0–20", mult: 1 },
+  { label: "21–50", mult: 1.6 },
+  { label: "51–100", mult: 2.6 },
+  { label: "100+", mult: 4 },
+];
+
+function Calculator() {
+  const [rangeIdx, setRangeIdx] = useState(0);
+  const [clientType, setClientType] = useState<"osvc" | "sro">("osvc");
+  const base = clientType === "osvc" ? 800 : 1500;
+  const mult = DOC_RANGES[rangeIdx].mult;
+  const low = Math.round((base * mult) / 100) * 100;
+  const high = Math.round((base * mult * 1.4) / 100) * 100;
+  const fmt = (n: number) => n.toLocaleString("cs-CZ");
+
+  return (
+    <section id="cenova-kalkulacka" className="py-20 md:py-28">
+      <div className="container-page">
+        <SectionTitle
+          eyebrow="Cenová nabídka"
+          title="Orientační cenová nabídka."
+          desc="Zvolte typ klienta a počet dokladů měsíčně. Získáte tak rámcovou představu o ceně."
+          center
+        />
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto mt-12 max-w-3xl rounded-3xl border border-border bg-card p-6 shadow-card sm:p-10"
+        >
+          <div className="grid gap-8 md:grid-cols-2">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Typ klienta
+              </p>
+              <div className="mt-3 inline-flex w-full rounded-full border border-border bg-secondary/60 p-1">
+                {([
+                  { k: "osvc", label: "OSVČ" },
+                  { k: "sro", label: "s.r.o." },
+                ] as const).map((o) => (
+                  <button
+                    key={o.k}
+                    type="button"
+                    onClick={() => setClientType(o.k)}
+                    className={`flex-1 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                      clientType === o.k
+                        ? "bg-navy text-primary-foreground shadow-soft"
+                        : "text-navy hover:bg-background"
+                    }`}
+                  >
+                    {o.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Počet dokladů měsíčně
+              </p>
+              <input
+                type="range"
+                min={0}
+                max={DOC_RANGES.length - 1}
+                step={1}
+                value={rangeIdx}
+                onChange={(e) => setRangeIdx(Number(e.target.value))}
+                className="mt-4 w-full accent-emerald"
+                aria-label="Počet dokladů měsíčně"
+              />
+              <div className="mt-2 flex justify-between text-xs text-muted-foreground">
+                {DOC_RANGES.map((r, i) => (
+                  <button
+                    key={r.label}
+                    type="button"
+                    onClick={() => setRangeIdx(i)}
+                    className={`transition-colors ${
+                      i === rangeIdx ? "font-semibold text-navy" : "hover:text-navy"
+                    }`}
+                  >
+                    {r.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 rounded-2xl bg-navy p-8 text-center text-primary-foreground">
+            <p className="text-xs font-semibold uppercase tracking-wider text-emerald-soft">
+              Orientační cena
+            </p>
+            <p className="mt-3 font-display text-4xl font-semibold sm:text-5xl">
+              {fmt(low)}–{fmt(high)} Kč
+              <span className="ml-2 text-base font-medium text-primary-foreground/70">
+                / měsíc
+              </span>
+            </p>
+            <p className="mt-3 text-sm text-primary-foreground/70">
+              {clientType === "osvc" ? "OSVČ" : "s.r.o."} · {DOC_RANGES[rangeIdx].label} dokladů měsíčně
+            </p>
+          </div>
+
+          <div className="mt-8 flex flex-col items-center gap-4">
+            <a
+              href="#kontakt"
+              className="inline-flex items-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold hover:shadow-gold"
+            >
+              Nezávazně poptat
+              <ArrowRight className="h-4 w-4" />
+            </a>
+            <p className="text-center text-xs text-muted-foreground">
+              Jedná se o orientační odhad, přesnou cenu stanovím po konzultaci.
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 
 const AUDIENCE = [
   {
@@ -886,6 +1040,7 @@ function HomePage() {
         <Hero />
         <About />
         <Services />
+        <Calculator />
         <Audience />
         <WhyMe />
         
