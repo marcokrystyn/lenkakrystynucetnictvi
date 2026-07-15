@@ -214,11 +214,11 @@ function Hero() {
           </p>
 
           <dl className="mt-12 grid max-w-lg grid-cols-3 border-t border-border pt-8">
-            {[
+            {([
               { n: 20, suffix: "+", v: "let praxe" },
               { n: 4, suffix: "×", v: "měsíčně komunikace" },
               { k: "ČR", v: "osobně i online" },
-            ].map((s, i) => (
+            ] as Array<{ k?: string; n?: number; suffix?: string; v: string }>).map((s, i) => (
               <div
                 key={s.v}
                 className={`px-3 text-center sm:text-left ${
