@@ -215,8 +215,8 @@ function Hero() {
 
           <dl className="mt-12 grid max-w-lg grid-cols-3 border-t border-border pt-8">
             {[
-              { k: "20+", v: "let praxe" },
-              { k: "4×", v: "měsíčně komunikace" },
+              { n: 20, suffix: "+", v: "let praxe" },
+              { n: 4, suffix: "×", v: "měsíčně komunikace" },
               { k: "ČR", v: "osobně i online" },
             ].map((s, i) => (
               <div
@@ -226,7 +226,7 @@ function Hero() {
                 }`}
               >
                 <dt className="font-display text-3xl font-semibold text-emerald">
-                  {s.k}
+                  {s.k ?? <CountUp to={s.n!} suffix={s.suffix} />}
                 </dt>
                 <dd className="mt-1 text-sm text-muted-foreground">{s.v}</dd>
               </div>
