@@ -166,6 +166,17 @@ function Hero() {
             "radial-gradient(ellipse 60% 50% at 85% 0%, oklch(0.48 0.12 160 / 0.08), transparent 60%), radial-gradient(ellipse 60% 60% at 0% 100%, oklch(0.32 0.06 255 / 0.06), transparent 60%)",
         }}
       />
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "linear-gradient(oklch(0.32 0.06 255) 1px, transparent 1px), linear-gradient(90deg, oklch(0.32 0.06 255) 1px, transparent 1px)",
+          backgroundSize: "56px 56px",
+          maskImage: "radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 80%)",
+        }}
+      />
       <div className="container-page grid gap-14 py-20 md:py-28 lg:grid-cols-[1.15fr_1fr] lg:items-center">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-emerald/30 bg-emerald/5 px-3.5 py-1.5 text-xs font-medium text-emerald">
