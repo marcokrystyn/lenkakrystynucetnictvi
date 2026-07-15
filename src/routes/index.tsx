@@ -583,15 +583,15 @@ const FAQS = [
   },
   {
     q: "Jak často spolu komunikujeme?",
-    a: "Minimálně čtyřikrát měsíčně, případně kdykoli podle aktuálních potřeb klienta.",
+    a: "Komunikujeme minimálně čtyřikrát měsíčně, případně dle vašich aktuálních potřeb.",
   },
   {
     q: "Působíte pouze v okolí Holčovic?",
-    a: "Ne. Díky online spolupráci poskytuji účetní služby klientům po celé České republice.",
+    a: "Ne, spolupráce probíhá osobně i online, takže mohu poskytovat služby klientům z celé České republiky.",
   },
   {
     q: "Zpracováváte daňová přiznání?",
-    a: "Připravuji kompletní podklady pro daňové přiznání. Samotné podání pak zajišťuje daňový poradce nebo klient.",
+    a: "Připravuji kompletní a přehledné podklady pro daňové přiznání, samotné podání pak zajišťuje daňový poradce nebo klient.",
   },
 ];
 
