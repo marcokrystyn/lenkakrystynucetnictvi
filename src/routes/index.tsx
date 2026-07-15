@@ -1040,6 +1040,7 @@ function HomePage() {
         <Hero />
         <About />
         <Services />
+        <Calculator />
         <Audience />
         <WhyMe />
         
