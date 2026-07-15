@@ -455,6 +455,129 @@ function Services() {
   );
 }
 
+const DOC_RANGES = [
+  { label: "0–20", mult: 1 },
+  { label: "21–50", mult: 1.6 },
+  { label: "51–100", mult: 2.6 },
+  { label: "100+", mult: 4 },
+];
+
+function Calculator() {
+  const [rangeIdx, setRangeIdx] = useState(0);
+  const [clientType, setClientType] = useState<"osvc" | "sro">("osvc");
+  const base = clientType === "osvc" ? 800 : 1500;
+  const mult = DOC_RANGES[rangeIdx].mult;
+  const low = Math.round((base * mult) / 100) * 100;
+  const high = Math.round((base * mult * 1.4) / 100) * 100;
+  const fmt = (n: number) => n.toLocaleString("cs-CZ");
+
+  return (
+    <section id="cenova-kalkulacka" className="py-20 md:py-28">
+      <div className="container-page">
+        <SectionTitle
+          eyebrow="Cenová nabídka"
+          title="Orientační cenová nabídka."
+          desc="Zvolte typ klienta a počet dokladů měsíčně. Získáte tak rámcovou představu o ceně."
+          center
+        />
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto mt-12 max-w-3xl rounded-3xl border border-border bg-card p-6 shadow-card sm:p-10"
+        >
+          <div className="grid gap-8 md:grid-cols-2">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Typ klienta
+              </p>
+              <div className="mt-3 inline-flex w-full rounded-full border border-border bg-secondary/60 p-1">
+                {([
+                  { k: "osvc", label: "OSVČ" },
+                  { k: "sro", label: "s.r.o." },
+                ] as const).map((o) => (
+                  <button
+                    key={o.k}
+                    type="button"
+                    onClick={() => setClientType(o.k)}
+                    className={`flex-1 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                      clientType === o.k
+                        ? "bg-navy text-primary-foreground shadow-soft"
+                        : "text-navy hover:bg-background"
+                    }`}
+                  >
+                    {o.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Počet dokladů měsíčně
+              </p>
+              <input
+                type="range"
+                min={0}
+                max={DOC_RANGES.length - 1}
+                step={1}
+                value={rangeIdx}
+                onChange={(e) => setRangeIdx(Number(e.target.value))}
+                className="mt-4 w-full accent-emerald"
+                aria-label="Počet dokladů měsíčně"
+              />
+              <div className="mt-2 flex justify-between text-xs text-muted-foreground">
+                {DOC_RANGES.map((r, i) => (
+                  <button
+                    key={r.label}
+                    type="button"
+                    onClick={() => setRangeIdx(i)}
+                    className={`transition-colors ${
+                      i === rangeIdx ? "font-semibold text-navy" : "hover:text-navy"
+                    }`}
+                  >
+                    {r.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 rounded-2xl bg-navy p-8 text-center text-primary-foreground">
+            <p className="text-xs font-semibold uppercase tracking-wider text-emerald-soft">
+              Orientační cena
+            </p>
+            <p className="mt-3 font-display text-4xl font-semibold sm:text-5xl">
+              {fmt(low)}–{fmt(high)} Kč
+              <span className="ml-2 text-base font-medium text-primary-foreground/70">
+                / měsíc
+              </span>
+            </p>
+            <p className="mt-3 text-sm text-primary-foreground/70">
+              {clientType === "osvc" ? "OSVČ" : "s.r.o."} · {DOC_RANGES[rangeIdx].label} dokladů měsíčně
+            </p>
+          </div>
+
+          <div className="mt-8 flex flex-col items-center gap-4">
+            <a
+              href="#kontakt"
+              className="inline-flex items-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold hover:shadow-gold"
+            >
+              Nezávazně poptat
+              <ArrowRight className="h-4 w-4" />
+            </a>
+            <p className="text-center text-xs text-muted-foreground">
+              Jedná se o orientační odhad, přesnou cenu stanovím po konzultaci.
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+
 const AUDIENCE = [
   {
     icon: Briefcase,
