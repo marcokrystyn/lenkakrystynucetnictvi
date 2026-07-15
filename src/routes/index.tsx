@@ -1,7 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { useReveal } from "@/hooks/use-reveal";
+
+function CountUp({ to, suffix = "", duration = 1.5 }: { to: number; suffix?: string; duration?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.5 });
+  const mv = useMotionValue(0);
+  const rounded = useTransform(mv, (v) => `${Math.round(v)}${suffix}`);
+  useEffect(() => {
+    if (inView) {
+      const controls = animate(mv, to, { duration, ease: [0.22, 1, 0.36, 1] });
+      return () => controls.stop();
+    }
+  }, [inView, to, duration, mv]);
+  return <motion.span ref={ref}>{rounded}</motion.span>;
+}
 import {
   BookOpenCheck,
   Wallet,
