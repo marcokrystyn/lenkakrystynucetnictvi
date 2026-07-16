@@ -455,20 +455,21 @@ function Services() {
   );
 }
 
-const DOC_RANGES = [
-  { label: "0–20", mult: 1 },
-  { label: "21–50", mult: 1.6 },
-  { label: "51–100", mult: 2.6 },
-  { label: "100+", mult: 4 },
-];
-
 function Calculator() {
-  const [rangeIdx, setRangeIdx] = useState(0);
+  const [docCount, setDocCount] = useState(100);
   const [clientType, setClientType] = useState<"osvc" | "sro">("osvc");
-  const base = clientType === "osvc" ? 800 : 1500;
-  const mult = DOC_RANGES[rangeIdx].mult;
-  const low = Math.round((base * mult) / 100) * 100;
-  const high = Math.round((base * mult * 1.4) / 100) * 100;
+
+  const minDocs = 100;
+  const maxDocs = 10000;
+
+  const priceConfig = {
+    osvc: { min: 1000, max: 6000 },
+    sro: { min: 1500, max: 8000 },
+  };
+
+  const { min: minPrice, max: maxPrice } = priceConfig[clientType];
+  const ratio = (docCount - minDocs) / (maxDocs - minDocs);
+  const price = Math.round(minPrice + ratio * (maxPrice - minPrice));
   const fmt = (n: number) => n.toLocaleString("cs-CZ");
 
   return (
@@ -514,32 +515,25 @@ function Calculator() {
             </div>
 
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Počet dokladů měsíčně
-              </p>
+              <div className="flex items-center justify-between">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  Počet dokladů měsíčně
+                </p>
+                <span className="text-sm font-semibold text-navy">{fmt(docCount)}</span>
+              </div>
               <input
                 type="range"
-                min={0}
-                max={DOC_RANGES.length - 1}
-                step={1}
-                value={rangeIdx}
-                onChange={(e) => setRangeIdx(Number(e.target.value))}
+                min={minDocs}
+                max={maxDocs}
+                step={100}
+                value={docCount}
+                onChange={(e) => setDocCount(Number(e.target.value))}
                 className="mt-4 w-full accent-emerald"
                 aria-label="Počet dokladů měsíčně"
               />
               <div className="mt-2 flex justify-between text-xs text-muted-foreground">
-                {DOC_RANGES.map((r, i) => (
-                  <button
-                    key={r.label}
-                    type="button"
-                    onClick={() => setRangeIdx(i)}
-                    className={`transition-colors ${
-                      i === rangeIdx ? "font-semibold text-navy" : "hover:text-navy"
-                    }`}
-                  >
-                    {r.label}
-                  </button>
-                ))}
+                <span>{fmt(minDocs)}</span>
+                <span>{fmt(maxDocs)}</span>
               </div>
             </div>
           </div>
@@ -549,13 +543,13 @@ function Calculator() {
               Orientační cena
             </p>
             <p className="mt-3 font-display text-4xl font-semibold sm:text-5xl">
-              {fmt(low)}–{fmt(high)} Kč
+              {fmt(price)} Kč
               <span className="ml-2 text-base font-medium text-primary-foreground/70">
                 / měsíc
               </span>
             </p>
             <p className="mt-3 text-sm text-primary-foreground/70">
-              {clientType === "osvc" ? "OSVČ" : "s.r.o."} · {DOC_RANGES[rangeIdx].label} dokladů měsíčně
+              {clientType === "osvc" ? "OSVČ" : "s.r.o."} · {fmt(docCount)} dokladů měsíčně
             </p>
           </div>
 
