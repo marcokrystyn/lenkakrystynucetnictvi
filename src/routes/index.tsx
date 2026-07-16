@@ -565,7 +565,16 @@ function Calculator() {
               Orientační cena
             </p>
             <p className="mt-3 font-display text-4xl font-semibold sm:text-5xl">
-              {fmt(price)} Kč
+              <motion.span
+                key={price}
+                initial={{ scale: 0.97, opacity: 0.7 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-block"
+              >
+                {fmt(price)}
+              </motion.span>{" "}
+              Kč
               <span className="ml-2 text-base font-medium text-primary-foreground/70">
                 / měsíc
               </span>
