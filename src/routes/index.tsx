@@ -330,6 +330,28 @@ function SectionTitle({
   );
 }
 
+function ScrollProgress() {
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const ratio = scrollHeight > 0 ? scrollTop / scrollHeight : 0;
+      setProgress(Math.min(100, Math.max(0, ratio * 100)));
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <div
+      aria-hidden
+      className="fixed top-0 left-0 z-[60] h-[2px] bg-emerald"
+      style={{ width: `${progress}%`, transition: "width 0.15s ease-out" }}
+    />
+  );
+}
+
 function About() {
   return (
     <section id="o-mne" className="py-20 md:py-28">
@@ -436,7 +458,7 @@ function Services() {
             <motion.article
               key={s.title}
               variants={fadeUp}
-              className="group rounded-3xl border border-border bg-card p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
+              className="group rounded-3xl border border-border bg-card p-7 shadow-soft transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-card"
             >
               <span className="inline-grid h-14 w-14 place-items-center rounded-2xl bg-emerald/10 text-emerald transition-colors group-hover:bg-emerald group-hover:text-accent-foreground">
                 <s.icon className="h-6 w-6" />
@@ -543,7 +565,16 @@ function Calculator() {
               Orientační cena
             </p>
             <p className="mt-3 font-display text-4xl font-semibold sm:text-5xl">
-              {fmt(price)} Kč
+              <motion.span
+                key={price}
+                initial={{ scale: 0.97, opacity: 0.7 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-block"
+              >
+                {fmt(price)}
+              </motion.span>{" "}
+              Kč
               <span className="ml-2 text-base font-medium text-primary-foreground/70">
                 / měsíc
               </span>
@@ -1028,7 +1059,7 @@ function HomePage() {
   useReveal();
   return (
     <div className="min-h-screen bg-background">
-
+      <ScrollProgress />
       <Header />
       <main>
         <Hero />
