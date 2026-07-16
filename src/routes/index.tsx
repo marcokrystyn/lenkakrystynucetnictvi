@@ -330,6 +330,28 @@ function SectionTitle({
   );
 }
 
+function ScrollProgress() {
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const ratio = scrollHeight > 0 ? scrollTop / scrollHeight : 0;
+      setProgress(Math.min(100, Math.max(0, ratio * 100)));
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <div
+      aria-hidden
+      className="fixed top-0 left-0 z-[60] h-[2px] bg-emerald"
+      style={{ width: `${progress}%`, transition: "width 0.15s ease-out" }}
+    />
+  );
+}
+
 function About() {
   return (
     <section id="o-mne" className="py-20 md:py-28">
