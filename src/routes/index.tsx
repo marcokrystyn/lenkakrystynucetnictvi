@@ -436,7 +436,7 @@ function Services() {
             <motion.article
               key={s.title}
               variants={fadeUp}
-              className="group rounded-3xl border border-border bg-card p-7 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
+              className="group rounded-3xl border border-border bg-card p-7 shadow-soft transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-card"
             >
               <span className="inline-grid h-14 w-14 place-items-center rounded-2xl bg-emerald/10 text-emerald transition-colors group-hover:bg-emerald group-hover:text-accent-foreground">
                 <s.icon className="h-6 w-6" />
