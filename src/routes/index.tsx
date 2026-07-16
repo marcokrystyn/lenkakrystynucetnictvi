@@ -1050,7 +1050,7 @@ function HomePage() {
   useReveal();
   return (
     <div className="min-h-screen bg-background">
-
+      <ScrollProgress />
       <Header />
       <main>
         <Hero />
