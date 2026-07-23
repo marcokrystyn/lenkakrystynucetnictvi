@@ -477,130 +477,6 @@ function Services() {
   );
 }
 
-function Calculator() {
-  const [docCount, setDocCount] = useState(100);
-  const [clientType, setClientType] = useState<"osvc" | "sro">("osvc");
-
-  const minDocs = 100;
-  const maxDocs = 10000;
-
-  const priceConfig = {
-    osvc: { min: 1000, max: 6000 },
-    sro: { min: 1500, max: 8000 },
-  };
-
-  const { min: minPrice, max: maxPrice } = priceConfig[clientType];
-  const ratio = (docCount - minDocs) / (maxDocs - minDocs);
-  const price = Math.round(minPrice + ratio * (maxPrice - minPrice));
-  const fmt = (n: number) => n.toLocaleString("cs-CZ");
-
-  return (
-    <section id="cenova-kalkulacka" className="py-20 md:py-28">
-      <div className="container-page">
-        <SectionTitle
-          eyebrow="Cenová nabídka"
-          title="Orientační cenová nabídka."
-          desc="Zvolte typ klienta a počet dokladů měsíčně. Získáte tak rámcovou představu o ceně."
-          center
-        />
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto mt-12 max-w-3xl rounded-3xl border border-border bg-card p-6 shadow-card sm:p-10"
-        >
-          <div className="grid gap-8 md:grid-cols-2">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Typ klienta
-              </p>
-              <div className="mt-3 inline-flex w-full rounded-full border border-border bg-secondary/60 p-1">
-                {([
-                  { k: "osvc", label: "OSVČ" },
-                  { k: "sro", label: "s.r.o." },
-                ] as const).map((o) => (
-                  <button
-                    key={o.k}
-                    type="button"
-                    onClick={() => setClientType(o.k)}
-                    className={`flex-1 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-                      clientType === o.k
-                        ? "bg-navy text-primary-foreground shadow-soft"
-                        : "text-navy hover:bg-background"
-                    }`}
-                  >
-                    {o.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  Počet dokladů měsíčně
-                </p>
-                <span className="text-sm font-semibold text-navy">{fmt(docCount)}</span>
-              </div>
-              <input
-                type="range"
-                min={minDocs}
-                max={maxDocs}
-                step={100}
-                value={docCount}
-                onChange={(e) => setDocCount(Number(e.target.value))}
-                className="mt-4 w-full accent-emerald"
-                aria-label="Počet dokladů měsíčně"
-              />
-              <div className="mt-2 flex justify-between text-xs text-muted-foreground">
-                <span>{fmt(minDocs)}</span>
-                <span>{fmt(maxDocs)}</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-10 rounded-2xl bg-navy p-8 text-center text-primary-foreground">
-            <p className="text-xs font-semibold uppercase tracking-wider text-emerald-soft">
-              Orientační cena
-            </p>
-            <p className="mt-3 font-display text-4xl font-semibold sm:text-5xl">
-              <motion.span
-                key={price}
-                initial={{ scale: 0.97, opacity: 0.7 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                className="inline-block"
-              >
-                {fmt(price)}
-              </motion.span>{" "}
-              Kč
-              <span className="ml-2 text-base font-medium text-primary-foreground/70">
-                / měsíc
-              </span>
-            </p>
-            <p className="mt-3 text-sm text-primary-foreground/70">
-              {clientType === "osvc" ? "OSVČ" : "s.r.o."} · {fmt(docCount)} dokladů měsíčně
-            </p>
-          </div>
-
-          <div className="mt-8 flex flex-col items-center gap-4">
-            <a
-              href="#kontakt"
-              className="inline-flex items-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold hover:shadow-gold"
-            >
-              Nezávazně poptat
-              <ArrowRight className="h-4 w-4" />
-            </a>
-            <p className="text-center text-xs text-muted-foreground">
-              Jedná se o orientační odhad, přesnou cenu stanovím po konzultaci.
-            </p>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
 
 
 const AUDIENCE = [
@@ -1065,7 +941,6 @@ function HomePage() {
         <Hero />
         <About />
         <Services />
-        <Calculator />
         <Audience />
         <WhyMe />
         
