@@ -900,7 +900,7 @@ function Contact() {
             </div>
 
             <a
-              href="tel:+420732328715"
+              href="tel:+420732329715"
               className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition-colors hover:border-emerald"
             >
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-emerald/10 text-emerald">
@@ -910,7 +910,7 @@ function Contact() {
                 <span className="block text-xs uppercase tracking-wider text-muted-foreground">
                   Telefon
                 </span>
-                <span className="block truncate font-medium text-navy">+420 732 328 715</span>
+                <span className="block truncate font-medium text-navy">+420 732 329 715</span>
               </span>
             </a>
 
@@ -1004,8 +1004,8 @@ function Footer() {
           <h4 className="font-display text-sm font-semibold text-navy">Kontakt</h4>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             <li>
-              <a href="tel:+420732328715" className="hover:text-emerald">
-                +420 732 328 715
+              <a href="tel:+420732329715" className="hover:text-emerald">
+                +420 732 329 715
               </a>
             </li>
             <li>
@@ -1045,8 +1045,8 @@ function Footer() {
 function FloatingContact() {
   return (
     <a
-      href="tel:+420732328715"
-      aria-label="Zavolat: +420 732 328 715"
+      href="tel:+420732329715"
+      aria-label="Zavolat: +420 732 329 715"
       className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-gold px-4 py-3.5 text-sm font-semibold text-white shadow-gold ring-1 ring-black/5 transition-transform hover:-translate-y-0.5 sm:bottom-6 sm:right-6"
     >
       <Phone className="h-5 w-5" />
