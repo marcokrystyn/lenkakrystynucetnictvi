@@ -696,13 +696,34 @@ function Faq() {
   );
 }
 
+const WEB3FORMS_ACCESS_KEY = "477472a0-25a8-4cff-aa61-5204bb166557";
+
 function ContactForm() {
-  const [sent, setSent] = useState(false);
+  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
-        setSent(true);
+        setFormStatus("sending");
+        const formEl = e.currentTarget;
+        const data = new FormData(formEl);
+        data.append("access_key", WEB3FORMS_ACCESS_KEY);
+        data.append("subject", "Nová poptávka z webu LK Účetnictví");
+        try {
+          const res = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: data,
+          });
+          const result = await res.json();
+          if (result.success) {
+            setFormStatus("sent");
+            formEl.reset();
+          } else {
+            setFormStatus("error");
+          }
+        } catch {
+          setFormStatus("error");
+        }
       }}
       className="space-y-4 rounded-2xl border border-border bg-card p-6 shadow-soft sm:p-8"
     >
@@ -712,6 +733,7 @@ function ContactForm() {
           <input
             required
             type="text"
+            name="name"
             className="mt-1.5 block w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-emerald focus:ring-2 focus:ring-emerald/20"
           />
         </label>
@@ -719,6 +741,7 @@ function ContactForm() {
           <span className="text-sm font-medium text-navy">Telefon</span>
           <input
             type="tel"
+            name="phone"
             className="mt-1.5 block w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-emerald focus:ring-2 focus:ring-emerald/20"
           />
         </label>
@@ -728,6 +751,7 @@ function ContactForm() {
         <input
           required
           type="email"
+          name="email"
           className="mt-1.5 block w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-emerald focus:ring-2 focus:ring-emerald/20"
         />
       </label>
@@ -736,20 +760,27 @@ function ContactForm() {
         <textarea
           required
           rows={5}
+          name="message"
           className="mt-1.5 block w-full resize-none rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-emerald focus:ring-2 focus:ring-emerald/20"
           placeholder="Napište mi, s čím vám mohu pomoci..."
         />
       </label>
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold hover:shadow-gold sm:w-auto"
+        disabled={formStatus === "sending"}
+        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold hover:shadow-gold disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
-        Odeslat poptávku
+        {formStatus === "sending" ? "Odesílám…" : "Odeslat poptávku"}
         <ArrowRight className="h-4 w-4" />
       </button>
-      {sent && (
+      {formStatus === "sent" && (
         <p className="text-sm font-medium text-emerald">
           Děkuji, ozvu se vám co nejdříve.
+        </p>
+      )}
+      {formStatus === "error" && (
+        <p className="text-sm font-medium text-red-500">
+          Něco se nepovedlo. Zkuste to prosím znovu, nebo mi napište přímo na e-mail.
         </p>
       )}
     </form>
