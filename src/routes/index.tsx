@@ -355,9 +355,12 @@ function About() {
       <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
         <div className="relative">
           <div className="rounded-[1.75rem] border border-border bg-gradient-to-br from-secondary to-background p-10 shadow-soft">
-            <div className="mx-auto grid h-40 w-40 place-items-center rounded-full bg-navy font-display text-5xl font-semibold text-primary-foreground">
-              LK
-            </div>
+            <img
+              src="/lk-mark.png"
+              alt="Monogram LK"
+              className="mx-auto h-32 w-auto object-contain md:h-36"
+            />
+
             <p className="mt-6 text-center font-display text-xl font-semibold text-navy">
               Lenka Krystynová
             </p>
