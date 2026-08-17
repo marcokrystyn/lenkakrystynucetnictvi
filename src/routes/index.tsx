@@ -87,17 +87,14 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-md">
       <div className="container-page flex h-18 items-center justify-between py-4">
-        <a href="#domu" className="flex items-center gap-2.5 min-w-0">
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-navy text-primary-foreground font-display font-semibold">
-            LK
-          </span>
-          <span className="flex min-w-0 flex-col leading-tight">
-            <span className="truncate font-display text-base font-semibold text-navy">
-              Lenka Krystynová
-            </span>
-            <span className="truncate text-xs text-muted-foreground">Účetní služby</span>
-          </span>
+        <a href="#domu" className="flex min-w-0 items-center">
+          <img
+            src="/lk-logo.png"
+            alt="Lenka Krystynová – Účetní služby"
+            className="h-9 w-auto max-w-[200px] object-contain sm:h-11 sm:max-w-none"
+          />
         </a>
+
 
         <nav className="hidden lg:flex items-center gap-1">
           {NAV.map((n) => (
@@ -358,9 +355,12 @@ function About() {
       <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
         <div className="relative">
           <div className="rounded-[1.75rem] border border-border bg-gradient-to-br from-secondary to-background p-10 shadow-soft">
-            <div className="mx-auto grid h-40 w-40 place-items-center rounded-full bg-navy font-display text-5xl font-semibold text-primary-foreground">
-              LK
-            </div>
+            <img
+              src="/lk-mark.png"
+              alt="Monogram LK"
+              className="mx-auto h-32 w-auto object-contain md:h-36"
+            />
+
             <p className="mt-6 text-center font-display text-xl font-semibold text-navy">
               Lenka Krystynová
             </p>
@@ -874,17 +874,12 @@ function Footer() {
     <footer className="border-t border-border bg-secondary/40">
       <div className="container-page grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="flex items-center gap-2.5">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-navy font-display font-semibold text-primary-foreground">
-              LK
-            </span>
-            <span className="flex flex-col leading-tight">
-              <span className="font-display font-semibold text-navy">
-                Lenka Krystynová
-              </span>
-              <span className="text-xs text-muted-foreground">Účetní služby</span>
-            </span>
-          </div>
+          <img
+            src="/lk-logo.png"
+            alt="Lenka Krystynová – Účetní služby"
+            className="h-10 w-auto max-w-full object-contain"
+          />
+
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
             Profesionální účetní služby pro OSVČ, s.r.o., spolky a malé i střední firmy.
             Osobně i online po celé ČR.
