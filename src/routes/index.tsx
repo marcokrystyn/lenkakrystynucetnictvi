@@ -113,7 +113,7 @@ function Header() {
 
         <a
           href="#kontakt"
-          className="hidden lg:inline-flex items-center gap-1.5 rounded-full bg-emerald px-4 py-2.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold hover:shadow-gold"
+          className="hidden lg:inline-flex items-center gap-1.5 rounded-full bg-emerald px-4 py-2.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold-soft hover:shadow-gold"
         >
           Nezávazná poptávka
           <ArrowRight className="h-4 w-4" />
@@ -163,7 +163,7 @@ function Hero() {
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(ellipse 60% 50% at 85% 0%, oklch(0.48 0.12 160 / 0.08), transparent 60%), radial-gradient(ellipse 60% 60% at 0% 100%, oklch(0.32 0.06 255 / 0.06), transparent 60%)",
+            "radial-gradient(ellipse 60% 50% at 85% 0%, oklch(0.71 0.088 88 / 0.12), transparent 60%), radial-gradient(ellipse 60% 60% at 0% 100%, oklch(0.30 0.075 268 / 0.07), transparent 60%)",
         }}
       />
       <div
@@ -197,7 +197,7 @@ function Hero() {
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <a
               href="#kontakt"
-              className="inline-flex items-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold hover:shadow-gold"
+              className="inline-flex items-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold-soft hover:shadow-gold"
             >
               Kontaktovat
               <ArrowRight className="h-4 w-4" />
@@ -242,7 +242,7 @@ function Hero() {
             className="absolute -inset-6 -z-10 rounded-[2rem]"
             style={{
               background:
-                "linear-gradient(135deg, oklch(0.32 0.06 255 / 0.08), oklch(0.48 0.12 160 / 0.08))",
+                "linear-gradient(135deg, oklch(0.30 0.075 268 / 0.08), oklch(0.71 0.088 88 / 0.12))",
             }}
           />
           <div className="rounded-[1.75rem] border border-border bg-card p-6 shadow-card sm:p-8">
@@ -768,7 +768,7 @@ function ContactForm() {
       <button
         type="submit"
         disabled={formStatus === "sending"}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold hover:shadow-gold disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald px-6 py-3.5 text-sm font-semibold text-accent-foreground shadow-emerald transition-transform hover:-translate-y-0.5 hover:bg-gold-soft hover:shadow-gold disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
         {formStatus === "sending" ? "Odesílám…" : "Odeslat poptávku"}
         <ArrowRight className="h-4 w-4" />
