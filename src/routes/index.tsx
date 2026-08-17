@@ -874,17 +874,12 @@ function Footer() {
     <footer className="border-t border-border bg-secondary/40">
       <div className="container-page grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="flex items-center gap-2.5">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-navy font-display font-semibold text-primary-foreground">
-              LK
-            </span>
-            <span className="flex flex-col leading-tight">
-              <span className="font-display font-semibold text-navy">
-                Lenka Krystynová
-              </span>
-              <span className="text-xs text-muted-foreground">Účetní služby</span>
-            </span>
-          </div>
+          <img
+            src="/lk-logo.png"
+            alt="Lenka Krystynová – Účetní služby"
+            className="h-10 w-auto max-w-full object-contain"
+          />
+
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
             Profesionální účetní služby pro OSVČ, s.r.o., spolky a malé i střední firmy.
             Osobně i online po celé ČR.
