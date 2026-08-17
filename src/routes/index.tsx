@@ -87,17 +87,14 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-md">
       <div className="container-page flex h-18 items-center justify-between py-4">
-        <a href="#domu" className="flex items-center gap-2.5 min-w-0">
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-navy text-primary-foreground font-display font-semibold">
-            LK
-          </span>
-          <span className="flex min-w-0 flex-col leading-tight">
-            <span className="truncate font-display text-base font-semibold text-navy">
-              Lenka Krystynová
-            </span>
-            <span className="truncate text-xs text-muted-foreground">Účetní služby</span>
-          </span>
+        <a href="#domu" className="flex min-w-0 items-center">
+          <img
+            src="/lk-logo.png"
+            alt="Lenka Krystynová – Účetní služby"
+            className="h-9 w-auto max-w-[200px] object-contain sm:h-11 sm:max-w-none"
+          />
         </a>
+
 
         <nav className="hidden lg:flex items-center gap-1">
           {NAV.map((n) => (
