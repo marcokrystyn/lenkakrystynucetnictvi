@@ -45,41 +45,41 @@
 
   --shadow-soft: 0 2px 6px oklch(0.2 0.04 250 / 0.04), 0 16px 40px oklch(0.2 0.04 250 / 0.05);
   --shadow-card: 0 4px 12px oklch(0.2 0.04 250 / 0.05), 0 24px 60px oklch(0.2 0.04 250 / 0.08);
-  --shadow-gold: 0 8px 24px oklch(0.68 0.16 55 / 0.22);
-  --shadow-emerald: 0 8px 24px oklch(0.48 0.12 160 / 0.25);
+  --shadow-gold: 0 8px 24px oklch(0.71 0.088 88 / 0.30);
+  --shadow-emerald: 0 8px 24px oklch(0.71 0.088 88 / 0.28);
 }
 
 :root {
   --radius: 0.875rem;
 
   /* Brand */
-  --navy: oklch(0.32 0.06 255);          /* ~#163A5F */
-  --navy-soft: oklch(0.45 0.05 255);
-  --emerald: oklch(0.48 0.12 160);       /* ~#1B7F5B */
-  --emerald-soft: oklch(0.58 0.11 160);
+  --navy: oklch(0.30 0.075 268);         /* ~#1C2E5A */
+  --navy-soft: oklch(0.44 0.06 268);
+  --emerald: oklch(0.71 0.088 88);       /* ~#C2A24C elegant gold */
+  --emerald-soft: oklch(0.82 0.075 88);  /* ~#D8C07E */
   --cream: oklch(0.985 0.008 90);
-  --gold: oklch(0.68 0.16 55);            /* ~#D97706 warm amber */
-  --gold-soft: oklch(0.78 0.13 65);
+  --gold: oklch(0.71 0.088 88);           /* ~#C2A24C */
+  --gold-soft: oklch(0.82 0.075 88);      /* ~#D8C07E */
 
   --background: oklch(1 0 0);
-  --foreground: oklch(0.22 0.04 255);
+  --foreground: oklch(0.22 0.05 268);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.04 255);
+  --card-foreground: oklch(0.22 0.05 268);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.04 255);
-  --primary: oklch(0.32 0.06 255);
+  --popover-foreground: oklch(0.22 0.05 268);
+  --primary: oklch(0.30 0.075 268);
   --primary-foreground: oklch(0.99 0 0);
   --secondary: oklch(0.965 0.008 240);
-  --secondary-foreground: oklch(0.32 0.06 255);
+  --secondary-foreground: oklch(0.30 0.075 268);
   --muted: oklch(0.965 0.008 240);
   --muted-foreground: oklch(0.5 0.03 255);
-  --accent: oklch(0.48 0.12 160);
-  --accent-foreground: oklch(0.99 0 0);
+  --accent: oklch(0.71 0.088 88);
+  --accent-foreground: oklch(0.24 0.06 268);
   --destructive: oklch(0.6 0.22 27);
   --destructive-foreground: oklch(0.99 0 0);
   --border: oklch(0.92 0.01 250);
   --input: oklch(0.92 0.01 250);
-  --ring: oklch(0.48 0.12 160);
+  --ring: oklch(0.71 0.088 88);
 }
 
 @layer base {
@@ -105,7 +105,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-emerald);
+    outline: 2px solid var(--color-gold);
     outline-offset: 2px;
     border-radius: 6px;
   }
